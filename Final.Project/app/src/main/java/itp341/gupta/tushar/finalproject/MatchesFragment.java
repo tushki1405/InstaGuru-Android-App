@@ -105,7 +105,8 @@ public class MatchesFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == Constants.INTENT_INFO){
-
+            //add code here if plan to do something specific
+            //else change for result to normal intent call
         }
     }
 

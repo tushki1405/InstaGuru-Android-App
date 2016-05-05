@@ -18,6 +18,8 @@ import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import com.squareup.picasso.Picasso;
+
 /**
  * Created by Tushar on 5/5/2016.
  */
@@ -47,8 +49,9 @@ public class MatchesAdapter extends ArrayAdapter<PersonInfo> {
         text_mentorlearn.setText("Mentor For: " + person.getMentorfor() + "\nLearn: " + person.getLearn());
 
         if(person.getPictures()[0] != null && !person.getPictures()[0].equals("") && !person.isImageset()){
-            new DownloadImageTask(image_1, person)
-                    .execute(Constants.API_IMAGE + person.getId() + "_" + person.getPictures()[0]);
+            Picasso.with(getContext()).load(Constants.API_IMAGE + person.getId() + "_" + person.getPictures()[0])
+                    .error(R.drawable.image_upload).into(image_1);
+            //new DownloadImageTask(image_1, person).execute(Constants.API_IMAGE + person.getId() + "_" + person.getPictures()[0]);
         }
 
         // Return the completed view to render on screen
@@ -61,7 +64,7 @@ public class MatchesAdapter extends ArrayAdapter<PersonInfo> {
         notifyDataSetChanged();
     }
 
-    //reference: http://stackoverflow.com/questions/2471935/how-to-load-an-imageview-by-url-in-android
+    /*//reference: http://stackoverflow.com/questions/2471935/how-to-load-an-imageview-by-url-in-android
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
         PersonInfo person;
@@ -95,6 +98,6 @@ public class MatchesAdapter extends ArrayAdapter<PersonInfo> {
             bmImage.setImageBitmap(result);
             person.setImageset(true);
         }
-    }
+    }*/
 }
 
