@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.content.SharedPreferences;
 
@@ -58,6 +59,7 @@ public class MainFragment extends Fragment {
     ImageButton button_image_4;
     HashMap<String, File> imageURI;
     Context mContext;
+    ProgressBar progress_load;
     static final String TAG= "MainFragment";
 
     @Override
@@ -80,6 +82,7 @@ public class MainFragment extends Fragment {
         button_image_2 = (ImageButton) v.findViewById(R.id.image_2);
         button_image_3 = (ImageButton) v.findViewById(R.id.image_3);
         button_image_4 = (ImageButton) v.findViewById(R.id.image_4);
+        progress_load = (ProgressBar) v.findViewById(R.id.progress_load);
         imageURI = new HashMap<String, File>();
         mContext = v.getContext();
 
@@ -89,6 +92,13 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "Clicked button. Start processing.");
+
+                if(edit_name.getText().toString().equals("") || edit_dob.getText().toString().equals("")
+                        || edit_email.getText().toString().equals("") || edit_mentor.getText().toString().equals("")
+                        || edit_learn.getText().toString().equals("") || edit_about.getText().toString().equals("")){
+                    Toast.makeText(getContext(), "Please fill all fields before Registering.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 HashMap<String, String> data = new HashMap<String, String>();
                 data.put(Constants.API_NAME, edit_name.getText().toString());
@@ -100,6 +110,8 @@ public class MainFragment extends Fragment {
 
                 Log.d(TAG, "Hashmap ready. Begin asynctask.");
                 PostData post = new PostData(v.getContext());
+                button_register.setVisibility(View.GONE);
+                progress_load.setVisibility(View.VISIBLE);
                 post.execute(data);
                 Log.d(TAG, "Asynctask command executed.");
             }
@@ -261,6 +273,7 @@ public class MainFragment extends Fragment {
                     JSONObject obj = new JSONObject(result);
                     if (obj.getInt(Constants.API_RESPONSECODE) == 200) {
                         prefedit.putInt(Constants.PREF_USERID, obj.getInt(Constants.API_USERID));
+                        prefedit.putString(Constants.PREF_USERNAME, obj.getString(Constants.API_NAME));
                         prefedit.commit();
                         Toast.makeText(mContext, "Registration successful!", Toast.LENGTH_SHORT).show();
 
@@ -269,16 +282,22 @@ public class MainFragment extends Fragment {
                         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(i);
                     } else {
+                        button_register.setVisibility(View.VISIBLE);
+                        progress_load.setVisibility(View.GONE);
                         Toast.makeText(mContext, "Error in creating new account.", Toast.LENGTH_SHORT).show();
                         Log.e(TAG, "Error in creating new account." + obj.getString(Constants.API_RESPONSEMSG));
                     }
                 } catch (Exception ex) {
+                    button_register.setVisibility(View.VISIBLE);
+                    progress_load.setVisibility(View.GONE);
                     Toast.makeText(mContext, "Error in parsing json data.", Toast.LENGTH_SHORT).show();
                     Log.e(TAG, "Error in parsing json data" + ex.getMessage());
                 }
             } else {
+                button_register.setVisibility(View.VISIBLE);
+                progress_load.setVisibility(View.GONE);
                 Toast.makeText(mContext, "Error posting data to server.", Toast.LENGTH_SHORT).show();
-                Log.e(TAG, "Error in posting data to server");
+                Log.e(TAG, "Please check your internet connection.");
             }
         }
     }

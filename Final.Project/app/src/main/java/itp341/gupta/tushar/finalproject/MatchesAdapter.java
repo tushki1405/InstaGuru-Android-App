@@ -41,12 +41,12 @@ public class MatchesAdapter extends ArrayAdapter<PersonInfo> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.match_item, parent, false);
         }
         // Lookup view for data population
-        TextView text_about = (TextView) convertView.findViewById(R.id.text_about);
-        TextView text_mentorlearn = (TextView) convertView.findViewById(R.id.text_mentorlearn);
+        TextView text_mentor = (TextView) convertView.findViewById(R.id.text_mentor);
+        TextView text_learn = (TextView) convertView.findViewById(R.id.text_learn);
         ImageView image_1 = (ImageView) convertView.findViewById(R.id.image_1);
         // Populate the data into the template view using the data object
-        text_about.setText(person.getAbout());
-        text_mentorlearn.setText("Mentor For: " + person.getMentorfor() + "\nLearn: " + person.getLearn());
+        text_mentor.setText(person.getMentorfor());
+        text_learn.setText(person.getLearn());
 
         if(person.getPictures()[0] != null && !person.getPictures()[0].equals("") && !person.isImageset()){
             Picasso.with(getContext()).load(Constants.API_IMAGE + person.getId() + "_" + person.getPictures()[0])

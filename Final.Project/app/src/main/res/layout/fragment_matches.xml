@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/edit_search"
             android:layout_marginLeft="5dp"
-            android:hint="Search Mentor For or Learn" />
+            android:hint="Search &apos;Mentor for&apos; or &apos;Learn&apos;" />
 
         <ImageButton
             android:layout_width="40dp"

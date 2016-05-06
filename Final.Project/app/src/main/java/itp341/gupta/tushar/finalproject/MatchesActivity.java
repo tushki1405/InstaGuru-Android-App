@@ -19,8 +19,6 @@ public class MatchesActivity extends AppCompatActivity {
         fm = getSupportFragmentManager();
         matchesFragment = new MatchesFragment();
 
-        //((FrameLayout) findViewById(R.id.fragment_container)).removeAllViews();
-
         fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, matchesFragment);
         fragmentTransaction.commit();

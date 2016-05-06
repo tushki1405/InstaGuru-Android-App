@@ -14,9 +14,43 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:src="@drawable/icon2" />
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:src="@drawable/logo" />
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Insta"
+                    android:id="@+id/textView3"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="45dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="GURU"
+                    android:id="@+id/textView9"
+                    android:textStyle="bold"
+                    android:textSize="45dp"
+                    android:layout_marginLeft="2dp"
+                    android:textColor="@color/colorMain" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -60,7 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Email:"
+                    android:text="Phone:"
                     android:id="@+id/textView4"
                     android:textColor="@color/colorText"
                     android:layout_marginTop="17dp" />
@@ -77,21 +111,24 @@
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
                     android:ems="10"
-                    android:id="@+id/edit_name" />
+                    android:id="@+id/edit_name"
+                    android:hint="Enter your name" />
 
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:inputType="date"
                     android:ems="10"
-                    android:id="@+id/edit_dob" />
+                    android:id="@+id/edit_dob"
+                    android:hint="mm/dd/yyyy" />
 
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
+                    android:inputType="phone"
                     android:ems="10"
-                    android:id="@+id/edit_email" />
+                    android:id="@+id/edit_email"
+                    android:hint="2132949598" />
 
             </LinearLayout>
 
@@ -101,10 +138,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Things you can be a Mentor for:"
+            android:text="You can be a Mentor for:"
             android:id="@+id/textView5"
-            android:paddingLeft="10dp"
-            android:textColor="@color/colorText" />
+            android:textColor="@color/colorText"
+            android:layout_marginLeft="10dp" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -113,7 +150,8 @@
             android:ems="10"
             android:id="@+id/edit_mentor"
             android:layout_marginLeft="10dp"
-            android:lines="1" />
+            android:lines="1"
+            android:hint="Activities, hobbies you are good at..." />
 
         <TextView
             android:layout_width="wrap_content"
@@ -131,7 +169,8 @@
             android:ems="10"
             android:id="@+id/edit_learn"
             android:layout_marginLeft="10dp"
-            android:lines="1" />
+            android:lines="1"
+            android:hint="Activities you are interested in..." />
 
         <TextView
             android:layout_width="wrap_content"
@@ -149,7 +188,8 @@
             android:ems="10"
             android:id="@+id/edit_about"
             android:layout_marginLeft="10dp"
-            android:lines="1" />
+            android:lines="1"
+            android:hint="Tell everyone about yourself..." />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -208,15 +248,24 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
 
         <Button
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="REGISTER"
             android:id="@+id/button_register"
             android:textSize="20dp"
             android:background="@drawable/mybutton" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/progress_load"
+            android:visibility="gone"/>
     </LinearLayout>
 
 </LinearLayout>

@@ -2,18 +2,22 @@ package itp341.gupta.tushar.finalproject;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -41,16 +45,26 @@ public class InformationFragment extends Fragment {
     ImageButton image_info_2;
     ImageButton image_info_3;
     ImageButton image_info_4;
-    TextView text_info;
     PersonInfo person;
     String [] pictures;
+    TextView text_name;
+    TextView text_info_mentor;
+    TextView text_info_learn;
+    TextView text_info_aboutme;
+    Button button_contact;
+    SharedPreferences prefs;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_information, container, false);
-        text_info = (TextView) v.findViewById(R.id.text_info);
+        text_name = (TextView) v.findViewById(R.id.text_name);
+        text_info_mentor = (TextView) v.findViewById(R.id.text_info_mentor);
+        text_info_learn = (TextView) v.findViewById(R.id.text_info_learn);
+        text_info_aboutme = (TextView) v.findViewById(R.id.text_info_aboutme);
+        button_contact = (Button) v.findViewById(R.id.button_contact);
+
         image_info_main = (ImageView) v.findViewById(R.id.image_info_main);
         image_info_1 = (ImageButton) v.findViewById(R.id.image_info_1);
         image_info_2 = (ImageButton) v.findViewById(R.id.image_info_2);
@@ -63,9 +77,16 @@ public class InformationFragment extends Fragment {
         imageMap.put(3, image_info_3);
         imageMap.put(4, image_info_4);
 
+        prefs = this.getActivity().getSharedPreferences(Constants.PREF_FILENAME, this.getActivity().MODE_PRIVATE);
+
         //get person info
         i = getActivity().getIntent();
         person = (PersonInfo) i.getSerializableExtra(Constants.INTENT_VAR_PERSON);
+
+        text_name.setText(person.getName());
+        text_info_mentor.setText(person.getMentorfor());
+        text_info_learn.setText(person.getLearn());
+        text_info_aboutme.setText(person.getAbout());
 
         pictures = person.getPictures();
 
@@ -86,10 +107,6 @@ public class InformationFragment extends Fragment {
                 imageMap.get(i+1).setVisibility(View.GONE);
             }
         }
-
-        text_info.setText("Name: " + person.getName() + "\nCan be a mentor for: " + person.getMentorfor() +
-                "\nWant to Learn: " + person.getLearn() + "\nAbout Me: " + person.getAbout());
-        //person.getEmail()
 
         image_info_1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +140,22 @@ public class InformationFragment extends Fragment {
             }
         });
 
+        button_contact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    String message = "Hi " + person.getName() + ",\n\n" + "I saw your profile on InstaGURU and " +
+                            "would love to connect and talk more. \n\nThanks,\n" + prefs.getString(Constants.PREF_USERNAME, "") +
+                            "\n\nSent via InstaGURU. Please reply to connect.";
+                    SmsManager.getDefault().sendTextMessage("2132949598", null, message, null, null);
+                    //person.getEmail() -> this has phone number
+                    Toast.makeText(getContext(), "Text message sent.", Toast.LENGTH_SHORT).show();
+                }
+                catch (Exception ex){
+                    //Toast.makeText(getContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         return v;
     }

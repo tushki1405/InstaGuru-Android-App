@@ -36,4 +36,5 @@ public class Constants {
     //shared preferences
     public static final String PREF_FILENAME = "InstaGuruPrefFileName";
     public static final String PREF_USERID = "InstaGuruUserID";
+    public static final String PREF_USERNAME = "InstaGuruName";
 }

@@ -20,8 +20,8 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:id="@+id/image_1"
                 android:src="@drawable/image_upload" />
         </LinearLayout>
@@ -37,18 +37,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Mentor and Learn"
-                android:id="@+id/text_mentorlearn"
-                android:layout_margin="8dp"
-                android:layout_marginBottom="0dp"
+                android:text="Mentor For:"
+                android:id="@+id/textView10"
+                android:textSize="10dp"
                 android:textColor="@color/colorText"
-                android:textSize="10dp" />
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="2dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Mentor"
+                android:id="@+id/text_mentor"
+                android:textColor="@color/colorText"
+                android:textSize="10dp"
+                android:layout_marginLeft="5dp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="130dp"
+            android:layout_width="120dp"
             android:layout_height="match_parent"
             android:background="@drawable/list_info_background">
 
@@ -56,12 +67,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="About"
-                android:id="@+id/text_about"
-                android:layout_margin="8dp"
-                android:layout_marginBottom="0dp"
+                android:text="Wants to Learn:"
+                android:id="@+id/textView11"
+                android:textSize="10dp"
                 android:textColor="@color/colorText"
-                android:textSize="10dp" />
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="2dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Learn"
+                android:id="@+id/text_learn"
+                android:textColor="@color/colorText"
+                android:textSize="10dp"
+                android:layout_marginLeft="5dp" />
+
         </LinearLayout>
     </LinearLayout>
 
