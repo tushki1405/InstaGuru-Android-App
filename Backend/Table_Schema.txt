@@ -1,0 +1,25 @@
++-----------+--------------+------+-----+---------+----------------+
+| Field     | Type         | Null | Key | Default | Extra          |
++-----------+--------------+------+-----+---------+----------------+
+| id        | int(11)      | NO   | PRI | NULL    | auto_increment |
+| name      | varchar(200) | YES  |     | NULL    |                |
+| dob       | datetime     | YES  |     | NULL    |                |
+| email     | varchar(100) | YES  |     | NULL    |                |
+| mentorfor | mediumtext   | YES  |     | NULL    |                |
+| learn     | mediumtext   | YES  |     | NULL    |                |
+| about     | mediumtext   | YES  |     | NULL    |                |
+| pictures  | mediumtext   | YES  |     | NULL    |                |
++-----------+--------------+------+-----+---------+----------------+
+
+
+CREATE TABLE `userinfo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) DEFAULT NULL,
+  `dob` datetime DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `mentorfor` mediumtext,
+  `learn` mediumtext,
+  `about` mediumtext,
+  `pictures` mediumtext,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8

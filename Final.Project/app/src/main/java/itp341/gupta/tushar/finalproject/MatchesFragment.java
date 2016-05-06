@@ -251,6 +251,9 @@ public class MatchesFragment extends Fragment {
                     JSONObject obj = new JSONObject(result);
                     if(obj.getInt(Constants.API_RESPONSECODE) == 200){
                         JSONArray arr = obj.getJSONArray(Constants.API_MATCHDATA);
+                        if(arr.length() == 0){
+                            Toast.makeText(getActivity().getApplicationContext(), "No results found. Please try again.", Toast.LENGTH_SHORT).show();
+                        }
                         persons.clear();
                         for (int i = 0; i < arr.length(); i++) {
                             JSONObject jsonobject = arr.getJSONObject(i);

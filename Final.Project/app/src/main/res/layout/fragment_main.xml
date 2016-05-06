@@ -254,7 +254,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="REGISTER"
+            android:text="SIGN UP"
             android:id="@+id/button_register"
             android:textSize="20dp"
             android:background="@drawable/mybutton" />
