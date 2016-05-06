@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -44,6 +45,7 @@ public class MatchesFragment extends Fragment {
     ArrayList<PersonInfo> persons;
     EditText edit_search;
     ImageButton button_search;
+    ProgressBar progress_search;
     static final String TAG = "MatchesFragment";
 
     @Override
@@ -55,6 +57,7 @@ public class MatchesFragment extends Fragment {
         edit_search = (EditText) v.findViewById(R.id.edit_search);
         button_search = (ImageButton) v.findViewById(R.id.button_search);
         listview = (ListView) v.findViewById(R.id.list_matches);
+        progress_search = (ProgressBar) v.findViewById(R.id.progress_search);
 
         //set userid from shared preference
         SharedPreferences prefs = getActivity().getSharedPreferences(Constants.PREF_FILENAME, getActivity().MODE_PRIVATE);
@@ -89,6 +92,8 @@ public class MatchesFragment extends Fragment {
                 String searchterm = edit_search.getText().toString();
                 if(searchterm != null && !searchterm.equals("")){
                     PostDataSearch post = new PostDataSearch(v.getContext());
+                    button_search.setVisibility(View.GONE);
+                    progress_search.setVisibility(View.VISIBLE);
                     post.execute(searchterm);
                 }
             }
@@ -147,7 +152,6 @@ public class MatchesFragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             Log.d(TAG, "Begin onPostExecute.");
-            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
             if (!result.equals("error")) {
                 Log.d(TAG, result);
                 try {
@@ -184,8 +188,8 @@ public class MatchesFragment extends Fragment {
                         listview.setAdapter(adapter);
                     }
                     else{
-                        Toast.makeText(mContext, "Error in creating new account.", Toast.LENGTH_SHORT).show();
-                        Log.e(TAG, "Error in creating new account." + obj.getString(Constants.API_RESPONSEMSG));
+                        Toast.makeText(mContext, "Error in fetching information.", Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "Error in fetching information." + obj.getString(Constants.API_RESPONSEMSG));
                     }
                 }
                 catch(Exception ex){
@@ -194,7 +198,7 @@ public class MatchesFragment extends Fragment {
                 }
             } else {
                 Toast.makeText(mContext, "Error posting data to server.", Toast.LENGTH_SHORT).show();
-                Log.e(TAG, "Error in posting data to server");
+                Log.e(TAG, "Please check internet connection.");
             }
         }
     }
@@ -239,6 +243,8 @@ public class MatchesFragment extends Fragment {
         protected void onPostExecute(String result) {
             Log.d(TAG, "Begin onPostExecute.");
             SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+            progress_search.setVisibility(View.GONE);
+            button_search.setVisibility(View.VISIBLE);
             if (!result.equals("error")) {
                 Log.d(TAG, result);
                 try {

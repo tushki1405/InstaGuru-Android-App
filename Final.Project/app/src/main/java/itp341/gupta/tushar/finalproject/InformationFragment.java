@@ -94,10 +94,10 @@ public class InformationFragment extends Fragment {
         for(int i=0; i < pictures.length; i++){
             if(first){
                 first = false;
-                Picasso.with(getContext()).load(Constants.API_IMAGE + person.getId() + "_" + pictures[i]).into(image_info_main);
+                Picasso.with(getContext()).load(Constants.API_IMAGE + person.getId() + "_" + pictures[i]).error(R.drawable.image_upload_big).into(image_info_main);
                 //new DownloadImageTask(image_info_main).execute(Constants.API_IMAGE + person.getId() + "_" + pictures[i]);
             }
-            Picasso.with(getContext()).load(Constants.API_IMAGE + person.getId() + "_" + pictures[i]).into(imageMap.get(i + 1));
+            Picasso.with(getContext()).load(Constants.API_IMAGE + person.getId() + "_" + pictures[i]).error(R.drawable.image_upload).into(imageMap.get(i + 1));
             //new DownloadImageTask(imageMap.get(i+1)).execute(Constants.API_IMAGE + person.getId() + "_" + pictures[i]);
         }
 
@@ -111,7 +111,7 @@ public class InformationFragment extends Fragment {
         image_info_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Picasso.with(getContext()).load(Constants.API_IMAGE + person.getId() + "_" + pictures[0]).into(image_info_main);
+                Picasso.with(getContext()).load(Constants.API_IMAGE + person.getId() + "_" + pictures[0]).error(R.drawable.image_upload_big).into(image_info_main);
                 //new DownloadImageTask(image_info_main).execute(Constants.API_IMAGE + person.getId() + "_" + pictures[0]);
             }
         });
@@ -119,7 +119,7 @@ public class InformationFragment extends Fragment {
         image_info_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Picasso.with(getContext()).load(Constants.API_IMAGE + person.getId() + "_" + pictures[1]).into(image_info_main);
+                Picasso.with(getContext()).load(Constants.API_IMAGE + person.getId() + "_" + pictures[1]).error(R.drawable.image_upload_big).into(image_info_main);
                 //new DownloadImageTask(image_info_main).execute(Constants.API_IMAGE + person.getId() + "_" + pictures[1]);
             }
         });
@@ -127,7 +127,7 @@ public class InformationFragment extends Fragment {
         image_info_3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Picasso.with(getContext()).load(Constants.API_IMAGE + person.getId() + "_" + pictures[2]).into(image_info_main);
+                Picasso.with(getContext()).load(Constants.API_IMAGE + person.getId() + "_" + pictures[2]).error(R.drawable.image_upload_big).into(image_info_main);
                 //new DownloadImageTask(image_info_main).execute(Constants.API_IMAGE + person.getId() + "_" + pictures[2]);
             }
         });
@@ -135,7 +135,7 @@ public class InformationFragment extends Fragment {
         image_info_4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Picasso.with(getContext()).load(Constants.API_IMAGE + person.getId() + "_" + pictures[3]).into(image_info_main);
+                Picasso.with(getContext()).load(Constants.API_IMAGE + person.getId() + "_" + pictures[3]).error(R.drawable.image_upload_big).into(image_info_main);
                 //new DownloadImageTask(image_info_main).execute(Constants.API_IMAGE + person.getId() + "_" + pictures[3]);
             }
         });

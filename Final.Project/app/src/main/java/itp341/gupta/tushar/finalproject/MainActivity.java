@@ -25,11 +25,11 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences(Constants.PREF_FILENAME, MODE_PRIVATE);
 
         /*Code for testing*/
-        SharedPreferences.Editor prefedit = prefs.edit();
+        /*SharedPreferences.Editor prefedit = prefs.edit();
         //prefedit.putInt(Constants.PREF_USERID, 23);
         prefedit.putString(Constants.PREF_USERNAME, "Tushar Gupta");
         prefedit.commit();
-
+        */
         if(prefs.contains(Constants.PREF_USERID)) {
             Log.d(TAG, "Shared preference found. Going to MatchesActivity");
             Intent i = new Intent(getApplicationContext(), MatchesActivity.class);

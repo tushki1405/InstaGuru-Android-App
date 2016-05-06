@@ -29,6 +29,13 @@
             android:src="@drawable/search"
             android:background="@color/colorBackground"
             android:layout_marginTop="2dp" />
+
+        <ProgressBar
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/progress_search"
+            android:indeterminate="true"
+            android:visibility="gone"/>
     </LinearLayout>
 
     <ListView
