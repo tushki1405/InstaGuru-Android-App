@@ -96,7 +96,7 @@ public class MainFragment extends Fragment {
                 if(edit_name.getText().toString().equals("") || edit_dob.getText().toString().equals("")
                         || edit_email.getText().toString().equals("") || edit_mentor.getText().toString().equals("")
                         || edit_learn.getText().toString().equals("") || edit_about.getText().toString().equals("")){
-                    Toast.makeText(getContext(), "Please fill all fields before Registering.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Please fill all fields before Signing Up.", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
